@@ -1,0 +1,18 @@
+body {
+  background-color: #fff;
+}
+@media print {
+  body {
+    background-color: #fff;
+  }
+}
+body::backdrop {
+  background-color: #fff;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.invalid-feedback {
+  color: red;
+}
