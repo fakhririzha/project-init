@@ -16,7 +16,7 @@ const DropFile = ({
     label = '',
     title = '',
     showListFile = true,
-    acceptedFile = 'image/*',
+    acceptedFile = 'image/*,.pdf,.doc,.docx,xls,xlsx,.zip,.rar',
     maxSize = 5000000,
     multiple = true,
     handleDrop = () => {},
@@ -28,7 +28,6 @@ const DropFile = ({
     noStyle = false,
     maxWidth,
     maxHeight,
-    uniqueId,
 }) => {
     const [dropFile, setDropFile] = React.useState(dropValue);
     const checkImage = async (files) => {
@@ -86,6 +85,7 @@ const DropFile = ({
                 });
             }
         }
+        // Do something with the files
     }, []);
     const onDropAccepted = async (files) => {
         // eslint-disable-next-line array-callback-return
@@ -98,7 +98,6 @@ const DropFile = ({
                     ...filebase64,
                     {
                         baseCode,
-                        hashId: uniqueId,
                         file: files[ind],
                     },
                 ];
@@ -107,28 +106,11 @@ const DropFile = ({
 
         const errorImage = await checkImage(files);
         if (!errorImage) {
-            const image = await toBase64(files[0]);
-            const imageBase64 = image
-                .replace(/^data:image\/png;base64,/, '')
-                .replace(/^data:image\/jpg;base64,/, '')
-                .replace(/^data:image\/jpeg;base64,/, '');
-            const values = {
-                base64: imageBase64,
-                fileName: filebase64[0].file.name,
-                uniqueId,
-            };
-            await fetch('/api/image/upload', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
             getBase64(filebase64);
         }
     };
 
-    const messageError = `Cannot upload, Files must be a type  + acceptedFile} & max file ${
+    const messageError = `Cannot upload, Files must be a type  + acceptedFile}& max file ${
         maxSize / 1000000
     }Mb`;
 
