@@ -15,7 +15,7 @@
             "@backendComponents/*": ["core/modules/backend/*"],
             "@frontendComponents/*": ["core/modules/frontend/*"],
             "@backendLayout": ["core/modules/backend/theme/layout/index.js"],
-            "@backendPlugin/*": ["core/modules/backend/plugin/*"]
+            "frontendLayout": ["core/modules/frontend/theme/layout/index.js"]
         }
     },
     "exclude": ["node_modules"]
