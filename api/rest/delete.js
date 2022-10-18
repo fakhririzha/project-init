@@ -1,5 +1,5 @@
-import { db as Database } from '@appConfig';
-import { createConnection } from 'mysql';
+const { db: Database } = require('../../app.config');
+const mysql = require('mysql');
 
 const handler = async (req, res) => {
     if (!req.body.sample_a) {
@@ -10,7 +10,7 @@ const handler = async (req, res) => {
             data: null,
         });
     } else {
-        const db = createConnection({
+        const db = mysql.createConnection({
             host: Database.host,
             user: Database.user,
             password: Database.password,
@@ -49,4 +49,4 @@ const handler = async (req, res) => {
     }
 };
 
-export default handler;
+module.exports = handler;

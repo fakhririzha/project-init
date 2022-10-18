@@ -1,8 +1,8 @@
-import { db as Database } from '@appConfig';
-import { createConnection } from 'mysql';
+const { db: Database } = require('../../app.config');
+const mysql = require('mysql');
 
 const handler = async (req, res) => {
-    const db = createConnection({
+    const db = mysql.createConnection({
         host: Database.host,
         user: Database.user,
         password: Database.password,
@@ -39,4 +39,4 @@ const handler = async (req, res) => {
     db.end();
 };
 
-export default handler;
+module.exports = handler;
