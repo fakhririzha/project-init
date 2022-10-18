@@ -1,5 +1,5 @@
-import { smtp } from '@appConfig';
-import { createTransport } from 'nodemailer';
+const { smtp } = require('../../app.config');
+const { createTransport } = require('nodemailer');
 
 const handler = async (req, res) => {
     const transporter = createTransport({
@@ -35,4 +35,4 @@ const handler = async (req, res) => {
     );
 };
 
-export default handler;
+module.exports = handler;
